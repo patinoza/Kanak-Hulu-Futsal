@@ -1,0 +1,6 @@
+{
+  "name": "Futsal Kanak Hulu 2026",
+  "description": "Official tournament portal for Futsal Kanak Hulu 2026, featuring live scores, schedules, team profiles, and gallery.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": []
+}

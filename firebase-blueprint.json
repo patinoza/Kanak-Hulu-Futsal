@@ -1,0 +1,86 @@
+{
+  "entities": {
+    "Team": {
+      "title": "Team",
+      "description": "A futsal team participating in the tournament.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "The name of the team." },
+        "logoUrl": { "type": "string", "description": "URL to the team's logo." },
+        "description": { "type": "string", "description": "Brief bio of the team." },
+        "groupId": { "type": "string", "description": "Optional: The ID of the group the team belongs to." }
+      },
+      "required": ["name"]
+    },
+    "Group": {
+      "title": "Group",
+      "description": "A tournament group (e.g., Group A).",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Group name (e.g. Group A)." }
+      },
+      "required": ["name"]
+    },
+    "Player": {
+      "title": "Player",
+      "description": "A member of a futsal team.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Name of the player." },
+        "teamId": { "type": "string", "description": "The ID of the team they belong to." },
+        "number": { "type": "string", "description": "Jersey number." },
+        "position": { "type": "string", "description": "Playing position (Goalkeeper, Pivot, etc.)" }
+      },
+      "required": ["name", "teamId"]
+    },
+    "Match": {
+      "title": "Match",
+      "description": "A match between two teams.",
+      "type": "object",
+      "properties": {
+        "teamAId": { "type": "string", "description": "ID of team A." },
+        "teamBId": { "type": "string", "description": "ID of team B." },
+        "scoreA": { "type": "number", "description": "Score for team A." },
+        "scoreB": { "type": "number", "description": "Score for team B." },
+        "date": { "type": "string", "format": "date", "description": "Date of the match." },
+        "time": { "type": "string", "description": "Time of the match." },
+        "status": { "type": "string", "enum": ["scheduled", "live", "finished"], "description": "Current status." },
+        "stage": { "type": "string", "description": "Group stage, Final, etc." }
+      },
+      "required": ["teamAId", "teamBId", "date", "status"]
+    },
+    "Gallery": {
+      "title": "Gallery",
+      "description": "Photos from the tournament events.",
+      "type": "object",
+      "properties": {
+        "url": { "type": "string", "description": "Image URL." },
+        "caption": { "type": "string", "description": "Image caption." },
+        "date": { "type": "string", "format": "date", "description": "When the photo was taken." }
+      },
+      "required": ["url"]
+    }
+  },
+  "firestore": {
+    "/teams": {
+      "schema": "Team",
+      "description": "Collection of teams."
+    },
+    "/groups": {
+      "schema": "Group",
+      "description": "Collection of tournament groups."
+    },
+    "/players": {
+      "schema": "Player",
+      "description": "Collection of all players across all teams."
+    },
+    "/matches": {
+      "schema": "Match",
+      "description": "Collection of matches."
+    },
+    "/gallery": {
+      "schema": "Gallery",
+      "description": "Tournament photo gallery."
+    }
+  }
+}
